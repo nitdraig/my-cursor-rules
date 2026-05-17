@@ -4,25 +4,64 @@ Personal [Cursor Agent Skills](https://cursor.com/docs) that extend the AI agent
 
 ## Skills
 
+### Frontend & UI
+
 | Skill | Description |
 |-------|-------------|
 | [anthropic-frontend-design](./anthropic-frontend-design/) | **frontend-design** — Build distinctive, production-grade web UIs (landing pages, dashboards, components) with strong aesthetics and without generic “AI slop” styling. |
-| [auditing-performance](./auditing-performance/) | **auditing-performance** — Audit and optimize application performance: bundle size, rendering, database queries, and Core Web Vitals. |
-| [auditing-security](./auditing-security/) | **auditing-security** — Systematic security review for OWASP Top 10 risks, exposed secrets, and insecure coding patterns. |
-| [database-design](./database-design/) | **database-design** — Design schemas with tables, relationships, indexes, constraints, normalization, and ORM setup. |
-| [prompt-engineering](./prompt-engineering/) | **prompt-engineering** — Write effective LLM prompts: structure, few-shot examples, chain-of-thought, system prompts, and output parsing. |
 | [react-best-practices](./react-best-practices/) | **vercel-react-best-practices** — Vercel’s React and Next.js performance guide for components, data fetching, bundles, and refactors (70 rules). |
 | [react-native-patterns](./react-native-patterns/) | **react-native-patterns** — React Native and Expo patterns: navigation, platform-specific code, performance, and native modules. |
 | [responsive-testing](./responsive-testing/) | **responsive-testing** — Test the app in Cursor’s browser at multiple viewport sizes, capture screenshots, and report layout breakage. |
-| [reviewing-code](./reviewing-code/) | **reviewing-code** — Structured code review for correctness, architecture, TypeScript, React Query hooks, tests, and team conventions. |
+| [web-design-guidelines](./web-design-guidelines/) | **web-design-guidelines** — Review UI against Web Interface Guidelines for accessibility, UX, and design best practices. |
+
+### SEO
+
+| Skill | Description |
+|-------|-------------|
 | [seo-analysis](./seo-analysis/) | **seo-analysis** — Full SEO audit with Search Console, PageSpeed, technical crawl, keywords, schema, Core Web Vitals, and a 30-day action plan. |
 | [seo-auditing](./seo-auditing/) | **seo-auditing** — Technical SEO audit: meta tags, structured data, Open Graph, sitemaps, `robots.txt`, and accessibility signals. |
-| [updating-npm-package](./updating-npm-package/) | **updating-npm-package** — Safely upgrade npm dependencies: check versions, read release notes, and handle minor vs major migrations. |
-| [web-design-guidelines](./web-design-guidelines/) | **web-design-guidelines** — Review UI against Web Interface Guidelines for accessibility, UX, and design best practices. |
-| [writing-copy](./writing-copy/) | **writing-copy** — Marketing and product copy for landing pages, CTAs, emails, and in-app UI text. |
+
+### Code quality & testing
+
+| Skill | Description |
+|-------|-------------|
+| [reviewing-code](./reviewing-code/) | **reviewing-code** — Structured code review for correctness, architecture, TypeScript, React Query hooks, tests, and team conventions. |
 | [writing-tests](./writing-tests/) | **writing-tests** — Analyze code and generate unit and integration tests with proper mocking, edge cases, and assertions. |
 
-Skills marked `user-invocable: true` in their `SKILL.md` frontmatter can be triggered directly from the agent UI when supported: **database-design**, **prompt-engineering**, **react-native-patterns**, **responsive-testing**, **seo-auditing**, **writing-copy**, and **web-design-guidelines**.
+### Audits (performance & security)
+
+| Skill | Description |
+|-------|-------------|
+| [auditing-performance](./auditing-performance/) | **auditing-performance** — Audit and optimize application performance: bundle size, rendering, database queries, and Core Web Vitals. |
+| [auditing-security](./auditing-security/) | **auditing-security** — Systematic security review for OWASP Top 10 risks, exposed secrets, and insecure coding patterns. |
+
+### Data
+
+| Skill | Description |
+|-------|-------------|
+| [database-design](./database-design/) | **database-design** — Design schemas with tables, relationships, indexes, constraints, normalization, and ORM setup. |
+
+### Content & AI
+
+| Skill | Description |
+|-------|-------------|
+| [writing-copy](./writing-copy/) | **writing-copy** — Marketing and product copy for landing pages, CTAs, emails, and in-app UI text. |
+| [prompt-engineering](./prompt-engineering/) | **prompt-engineering** — Write effective LLM prompts: structure, few-shot examples, chain-of-thought, system prompts, and output parsing. |
+
+### Tooling
+
+| Skill | Description |
+|-------|-------------|
+| [updating-npm-package](./updating-npm-package/) | **updating-npm-package** — Safely upgrade npm dependencies: check versions, read release notes, and handle minor vs major migrations. |
+
+Skills marked `user-invocable: true` in their `SKILL.md` frontmatter can be triggered directly from the agent UI when supported:
+
+| Category | Skills |
+|----------|--------|
+| Frontend & UI | **react-native-patterns**, **responsive-testing**, **web-design-guidelines** |
+| SEO | **seo-auditing** |
+| Data | **database-design** |
+| Content & AI | **writing-copy**, **prompt-engineering** |
 
 ## Installation
 
@@ -48,8 +87,9 @@ If you already use this folder for other skills, clone elsewhere and copy only t
 
 Skills are picked up automatically when their `description` in the YAML frontmatter matches what you are doing. You can also invoke them explicitly, for example:
 
-- “Run responsive testing on the dashboard at `/settings`.”
-- “Review the changes in this PR using our code review skill.”
+- “Run responsive testing on the dashboard at `/settings`.” (Frontend & UI)
+- “Review the changes in this PR using our code review skill.” (Code quality & testing)
+- “Audit technical SEO for this Next.js site.” (SEO)
 
 ## Repository layout
 
