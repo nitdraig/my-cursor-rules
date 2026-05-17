@@ -1,0 +1,227 @@
+## Tech Stack
+
+- **Backend**: Express.js, Node.js, TypeScript
+- **Frontend**: Next.js, React, TypeScript
+- **Database**: MongoDB (Mongoose)
+- **Styling**: Tailwind CSS
+- **Package Manager**: pnpm
+
+## General Conventions
+
+- TypeScript is mandatory throughout the project
+- Prefer ESM and modern browser syntax
+- Follow SOLID, KISS, YAGNI, and DRY principles
+- Avoid premature abstractions
+- Prioritize readability and maintainability
+- All coments, descriptions, documentation, instructions, and code should be in English
+
+## Project Architecture
+
+### Screaming Architecture / Feature-Based Architecture
+
+```
+- **assets/**: Static resources (images, fonts, etc.)
+- **domain/**: Key business concepts and use cases
+  - **[FeatureName]/**: Each important business feature
+    - **components/**: Feature-specific components
+    - **services/**: Services related to the feature
+    - **utils/**: Utilities specific to the feature
+    - **views/**: Views or pages related to the feature
+    - **hooks/**: React-specific hooks (useQuery, useMutation)
+    - **types/**: TypeScript types specific to the feature
+- **shared/**: Globally reusable components and utilities
+  - **components/**: Globally reusable components
+  - **layouts/**: Reusable layout components
+  - **utils/**: Global utilities and helper functions
+  - **hooks/**: Reusable hooks (if applicable)
+  - **types/**: Global TypeScript types
+- **pages/**: Next.js route structure (optional, can import from `domain` or `shared`)
+- **api/**: API configuration
+  - **endpoints/**: Endpoint constants (DO NOT hardcode URLs)
+  - **query-keys/**: Established convention for query keys
+```
+
+## TypeScript Rules
+
+- **Avoid `any` and `unknown`**: Search for type definitions in the codebase before using these types
+- **Prefer type inference**: Let TypeScript infer types when possible
+- **Prefer `type` over `interface`**: Except for public APIs
+- **Avoid type assertions**: Do not use `as` or `!` unless absolutely necessary
+- **Centralized types**: Export types from central locations for reuse
+- **Precise types**: Create types that accurately reflect data models
+- **If types are unclear**: Stop and clarify before continuing
+
+## Code Structure
+
+### Backend (Express)
+
+```
+server/
+  - src/
+    - routes/          # Routes organized by feature
+    - controllers/     # Controller logic
+    - services/        # Business logic
+    - models/          # Mongoose models
+    - middleware/      # Custom middleware
+    - utils/           # Utilities
+    - types/           # TypeScript types
+    - config/          # Configuration
+```
+
+### Frontend (Next.js)
+
+- **React Query Hooks**: All `useQuery` and `useMutation` must be in `/hooks` within each feature or in `shared/hooks`
+- **Query Keys**: Use the established convention in `api/query-keys`
+- **Endpoints**: Use constants from `api/endpoints` instead of hardcoding URLs
+- **Components**: Small, with a single responsibility
+- **Composition**: Prefer composition over complex configurations
+
+## Naming Conventions
+
+- **Components**: PascalCase (e.g., `UserProfile.tsx`)
+- **Functions and variables**: camelCase (e.g., `getUserData`, `isLoading`)
+- **Types and interfaces**: PascalCase (e.g., `UserData`, `ApiResponse`)
+- **Constants**: UPPER_SNAKE_CASE (e.g., `API_BASE_URL`)
+- **Files**: kebab-case for utilities, PascalCase for components
+- **Exports**: Prefer named exports for components and utilities
+
+## Styling and UI
+
+- **Tailwind CSS**: Only styling solution allowed
+- **Don't duplicate classes**: Extract reusable components if there's duplication
+- **Readability**: Prioritize readability over micro-visual optimizations
+- **Accessibility**: Mandatory
+  - Semantic HTML
+  - ARIA roles when applicable
+  - Proper focus management
+  - Keyboard navigation
+
+## MongoDB and Database
+
+- **Schemas with indexes**: Design schemas with appropriate indexes for performance
+- **Aggregation pipelines**: Use for complex data transformations
+- **Error handling**: Implement proper error handling for database operations
+- **Validation**: Validation at both application and database levels
+- **Document limits**: Consider size limits when designing schemas
+- **Transactions**: Use MongoDB transactions for operations requiring atomicity
+- **Pagination**: Implement pagination for large datasets
+
+## Express.js Patterns
+
+- **Feature-organized routes**: Group related routes
+- **Reusable middleware**: Extract common logic to middleware
+- **Thin controllers**: Move business logic to services
+- **Input validation**: Validate and sanitize all inputs
+- **Centralized error handling**: Use error handling middleware
+
+## Next.js Patterns
+
+- **Server Components by default**: Use Server Components when possible
+- **Client Components only when necessary**: Mark with `'use client'` only when interactivity is required
+- **API Routes**: Organize in `pages/api` or `app/api` according to project structure
+- **Image optimization**: Use Next.js `Image` component
+- **Appropriate SSR/SSG**: Use Server-Side Rendering or Static Generation as appropriate
+
+## Security
+
+- **Authentication and authorization**: Implement properly
+- **Input sanitization**: Prevent injection attacks
+- **Environment variables**: Use for sensitive configuration
+- **Rate limiting**: Implement to prevent abuse
+- **Principle of least privilege**: For API access
+- **HTTPS**: Use for all communications
+- **Input validation**: Validate and sanitize all inputs, especially from external sources
+
+## Performance
+
+- **Measure, don't guess**: Don't assume performance, bundle size, or load times
+- **Instrumentation first**: If something seems slow, add instrumentation before optimizing
+- **Validate in small scale**: Validate changes first in small scale before scaling up
+- **Query optimization**: Optimize database queries with appropriate indexes
+- **Caching strategies**: Implement caching for frequently accessed data
+- **Lazy loading**: Use lazy loading and pagination for large datasets
+- **Asset optimization**: Optimize image and asset delivery
+- **SSR/SSG**: Use Server-Side Rendering or Static Generation when appropriate
+
+## Testing
+
+- **Unit tests**: For business logic (frontend and backend)
+- **Integration tests**: For API endpoints
+- **Component tests**: Replace mocks with appropriate component tests
+- **Mocking**: Use mocking for external dependencies
+- **E2E tests**: For critical user flows
+- **Add/update tests**: When behavior changes, even if not explicitly requested
+- **No code with failing tests accepted**: All tests must pass
+
+### Testing Commands
+
+- Run tests: `npm test` or `npm run test`
+- For Vitest: `npm run vitest run -t "<test name>"`
+- After moving files or changing imports: `npm run lint`
+
+## Code Quality
+
+- **No code with type errors accepted**: All TypeScript errors must be resolved
+- **No code with lint errors accepted**: Run `npm run lint` before committing
+- **Review CI workflows**: Review `.github/workflows` if they exist
+- **Before committing**:
+  - `npm run lint`
+  - `npm test`
+
+## Commits and Pull Requests
+
+- **PR title**: `[<project_name>] Clear and concise description`
+- **Small and focused PRs**: One PR per feature or fix
+- **Description**: Explain what changed, why, and how it was verified
+- **New restrictions**: If a new restriction is introduced ("never X", "always Y"), document it in this file
+
+## Syntax Preferences
+
+- **Pure functions**: Use the `function` keyword for pure functions
+- **Concise syntax**: Avoid unnecessary braces in simple conditionals
+- **Destructuring**: Use destructuring for cleaner code
+- **Async/await**: Prefer async/await over Promises for better readability
+- **Optional chaining**: Use `?.` and `??` when appropriate
+- **Functional code**: Prefer functional and declarative patterns; avoid classes
+- **Constants**: Use constants for magic numbers and repeated values
+- **Descriptive names**: Use descriptive names with auxiliary verbs (e.g., `isLoaded`, `hasError`)
+
+## Agent Behavior
+
+- **Ask when unclear**: If a request is unclear, ask concrete questions before executing
+- **Simple tasks**: Execute simple and well-defined tasks directly
+- **Complex tasks**: Confirm understanding before acting on refactors, new features, or architectural decisions
+- **Don't assume**: Don't assume implicit requirements. If information is missing, ask for it
+- **Consistency**: Prioritize consistency with existing codebase patterns
+- **Trade-offs**: Present trade-offs between different approaches with pros and cons
+- **Alternatives**: Suggest alternatives when an approach might lead to performance or security issues
+- **Context**: Request context about existing patterns when implementing new features
+
+## File Structure by Type
+
+### Backend (Express)
+
+- **Routes**: `src/routes/{feature}.ts`
+- **Controllers**: `src/controllers/{feature}.ts`
+- **Services**: `src/services/{feature}.ts`
+- **Models**: `src/models/{model}.ts`
+- **Middleware**: `src/middleware/{name}.ts`
+- **Utilities**: `src/utils/{function}.ts`
+- **Types**: `src/types/{feature}.ts`
+
+### Frontend (Next.js)
+
+- **Feature components**: `domain/{FeatureName}/components/{ComponentName}.tsx`
+- **Shared components**: `shared/components/{ComponentName}.tsx`
+- **Feature hooks**: `domain/{FeatureName}/hooks/use{FeatureName}.ts`
+- **Shared hooks**: `shared/hooks/use{HookName}.ts`
+- **Feature services**: `domain/{FeatureName}/services/{serviceName}.ts`
+- **Feature utilities**: `domain/{FeatureName}/utils/{utilName}.ts`
+- **Shared utilities**: `shared/utils/{utilName}.ts`
+- **Feature types**: `domain/{FeatureName}/types/{typeName}.ts`
+- **Shared types**: `shared/types/{typeName}.ts`
+- **Views**: `domain/{FeatureName}/views/{ViewName}.tsx`
+- **Pages**: `pages/{route}.tsx` or `app/{route}/page.tsx`
+- **API Routes**: `pages/api/{route}.ts` or `app/api/{route}/route.ts`
+- **Query Keys**: `api/query-keys/{feature}.ts`
+- **Endpoints**: `api/endpoints/{feature}.ts`
