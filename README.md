@@ -27,6 +27,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs) that extend the AI agent
 |-------|-------------|
 | [reviewing-code](./reviewing-code/) | **reviewing-code** — Structured code review for correctness, architecture, TypeScript, React Query hooks, tests, and team conventions. |
 | [writing-tests](./writing-tests/) | **writing-tests** — Analyze code and generate unit and integration tests with proper mocking, edge cases, and assertions. |
+| [cleaning-code](./cleaning-code/) | **cleaning-code** — Remove debug logs, redundant and obsolete comments, commented-out code; translate remaining comments to English. |
 
 ### Backend (Express)
 
@@ -71,6 +72,7 @@ Skills marked `user-invocable: true` in their `SKILL.md` frontmatter can be trig
 | SEO | **seo-auditing** |
 | Data | **database-design** |
 | Content & AI | **writing-copy**, **prompt-engineering** |
+| Code quality & testing | **cleaning-code** |
 
 ## Installation
 
@@ -98,6 +100,7 @@ Skills are picked up automatically when their `description` in the YAML frontmat
 
 - “Run responsive testing on the dashboard at `/settings`.” (Frontend & UI)
 - “Review the changes in this PR using our code review skill.” (Code quality & testing)
+- “Clean debug logs and translate comments to English in `server/src`.” (Code quality & testing)
 - “Review this Express API for security and performance.” (Backend — Express)
 - “Add supertest coverage for the new `/api/users` routes.” (Backend — Express)
 - “Audit technical SEO for this Next.js site.” (SEO)
