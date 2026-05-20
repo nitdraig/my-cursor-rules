@@ -28,6 +28,15 @@ Personal [Cursor Agent Skills](https://cursor.com/docs) that extend the AI agent
 | [reviewing-code](./reviewing-code/) | **reviewing-code** — Structured code review for correctness, architecture, TypeScript, React Query hooks, tests, and team conventions. |
 | [writing-tests](./writing-tests/) | **writing-tests** — Analyze code and generate unit and integration tests with proper mocking, edge cases, and assertions. |
 
+### Backend (Express)
+
+Aligned with `.cursorrules` (Express, TypeScript, MongoDB/Mongoose, pnpm).
+
+| Skill | Description |
+|-------|-------------|
+| [express-api-review](./express-api-review/) | **express-api-review** — Structured review of Express APIs: REST layout, thin controllers, Mongoose performance, OWASP-style security, and report tables. Includes [reference patterns](./express-api-review/references/patterns.md). |
+| [express-testing](./express-testing/) | **express-testing** — Supertest integration tests for routes, Zod validation, JWT auth, error mapping, and mocked services; Jest or Vitest. |
+
 ### Audits (performance & security)
 
 | Skill | Description |
@@ -89,6 +98,8 @@ Skills are picked up automatically when their `description` in the YAML frontmat
 
 - “Run responsive testing on the dashboard at `/settings`.” (Frontend & UI)
 - “Review the changes in this PR using our code review skill.” (Code quality & testing)
+- “Review this Express API for security and performance.” (Backend — Express)
+- “Add supertest coverage for the new `/api/users` routes.” (Backend — Express)
 - “Audit technical SEO for this Next.js site.” (SEO)
 
 ## Repository layout
@@ -102,7 +113,7 @@ Skills are picked up automatically when their `description` in the YAML frontmat
     └── SKILL.md          # Required; optional reference.md, examples.md, scripts/
 ```
 
-Some skills include extra assets (for example `react-best-practices/AGENTS.md` or `anthropic-frontend-design/LICENSE.txt`).
+Some skills include extra assets (for example `react-best-practices/AGENTS.md`, `express-api-review/references/patterns.md`, or `anthropic-frontend-design/LICENSE.txt`).
 
 ## Adding a skill
 

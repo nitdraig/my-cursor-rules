@@ -13,7 +13,7 @@
 - Follow SOLID, KISS, YAGNI, and DRY principles
 - Avoid premature abstractions
 - Prioritize readability and maintainability
-- All coments, descriptions, documentation, instructions, and code should be in English
+- All comments, descriptions, documentation, instructions, and code should be in English
 
 ## Project Architecture
 
