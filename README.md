@@ -79,13 +79,13 @@ Skills marked `user-invocable: true` in their `SKILL.md` frontmatter can be trig
 Clone this repository into your personal skills directory:
 
 ```bash
-git clone https://github.com/nitdraig/my-cursor-rules.git ~/.cursor/skills
+git clone https://github.com/nitdraig/my-cursor-skills.git ~/.cursor/skills
 ```
 
 On Windows (PowerShell):
 
 ```powershell
-git clone https://github.com/nitdraig/my-cursor-rules.git $env:USERPROFILE\.cursor\skills
+git clone https://github.com/nitdraig/my-cursor-skills.git $env:USERPROFILE\.cursor\skills
 ```
 
 If you already use this folder for other skills, clone elsewhere and copy only the skill subfolders you need, or add this repo as a remote and pull updates.
