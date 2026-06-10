@@ -1,6 +1,11 @@
-# Cursor Agent Skills
+# Agent Skills (Cursor & OpenCode)
 
-Personal [Cursor Agent Skills](https://cursor.com/docs) that extend the AI agent with specialized workflows, conventions, and domain knowledge. Each skill is a folder with a `SKILL.md` file; Cursor loads them from this directory and applies them when the task matches the skill’s description.
+Personal agent skills that extend AI coding assistants with specialized workflows, conventions, and domain knowledge. Each skill is a folder with a `SKILL.md` file.
+
+Compatible with:
+
+- **[Cursor](https://cursor.com/docs)** — `~/.cursor/skills/` or `.cursor/skills/`
+- **[OpenCode](https://opencode.ai/docs/skills)** — `~/.config/opencode/skills/`, `~/.agents/skills/`, or `.opencode/skills/` (also `.claude/skills/`)
 
 ## Skills
 
@@ -64,6 +69,12 @@ Aligned with `.cursorrules` (Express, TypeScript, MongoDB/Mongoose, pnpm).
 |-------|-------------|
 | [updating-npm-package](./updating-npm-package/) | **updating-npm-package** — Safely upgrade npm dependencies: check versions, read release notes, and handle minor vs major migrations. |
 
+### Advisory & workflow
+
+| Skill | Description |
+|-------|-------------|
+| [improve](./improve/) | **improve** — Senior advisor (read-only): audit codebase, prioritize findings, write self-contained `plans/` for other agents to execute. Cursor + OpenCode; includes audit playbook, plan template, and host adapters. |
+
 Skills marked `user-invocable: true` in their `SKILL.md` frontmatter can be triggered directly from the agent UI when supported:
 
 | Category | Skills |
@@ -76,23 +87,33 @@ Skills marked `user-invocable: true` in their `SKILL.md` frontmatter can be trig
 
 ## Installation
 
-Clone this repository into your personal skills directory:
+### Cursor
 
 ```bash
 git clone https://github.com/nitdraig/my-cursor-skills.git ~/.cursor/skills
 ```
 
-On Windows (PowerShell):
+Windows (PowerShell):
 
 ```powershell
 git clone https://github.com/nitdraig/my-cursor-skills.git $env:USERPROFILE\.cursor\skills
 ```
 
-If you already use this folder for other skills, clone elsewhere and copy only the skill subfolders you need, or add this repo as a remote and pull updates.
+Project-scoped: `.cursor/skills/<skill-name>/`
 
-**Project-scoped skills:** To share skills with a team inside a repo, place them under `.cursor/skills/` in that project instead of `~/.cursor/skills/`.
+> Do not put custom skills in `~/.cursor/skills-cursor/` — reserved for Cursor built-ins.
 
-> **Note:** Do not put custom skills in `~/.cursor/skills-cursor/` — that path is reserved for Cursor’s built-in skills.
+### OpenCode
+
+```bash
+git clone https://github.com/nitdraig/my-cursor-skills.git ~/.config/opencode/skills
+```
+
+Or copy/symlink skill folders into `~/.agents/skills/` or `.opencode/skills/` per project. Allow skills in `opencode.json` if you use permission patterns.
+
+### Both hosts
+
+Clone once and symlink, or copy only the subfolders you need. Pull to sync updates.
 
 ## Usage
 
@@ -104,6 +125,7 @@ Skills are picked up automatically when their `description` in the YAML frontmat
 - “Review this Express API for security and performance.” (Backend — Express)
 - “Add supertest coverage for the new `/api/users` routes.” (Backend — Express)
 - “Audit technical SEO for this Next.js site.” (SEO)
+- “Run improve on this repo — audit and write plans for the top findings.” (Advisory)
 
 ## Repository layout
 
@@ -116,7 +138,7 @@ Skills are picked up automatically when their `description` in the YAML frontmat
     └── SKILL.md          # Required; optional reference.md, examples.md, scripts/
 ```
 
-Some skills include extra assets (for example `react-best-practices/AGENTS.md`, `express-api-review/references/patterns.md`, or `anthropic-frontend-design/LICENSE.txt`).
+Some skills include extra assets (for example `improve/references/`, `react-best-practices/AGENTS.md`, `express-api-review/references/patterns.md`).
 
 ## Adding a skill
 
@@ -125,7 +147,7 @@ Some skills include extra assets (for example `react-best-practices/AGENTS.md`, 
 3. Keep the description specific so the agent knows **when** to apply the skill.
 4. Commit and push; pull on other machines to sync.
 
-For authoring guidance, use Cursor’s built-in **create-skill** skill or see the [Cursor docs on Agent Skills](https://cursor.com/docs).
+For authoring guidance, use **create-skill** (Cursor) or see [Cursor docs](https://cursor.com/docs) / [OpenCode skills](https://opencode.ai/docs/skills).
 
 ## License
 
